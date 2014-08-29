@@ -9,14 +9,17 @@
 #import "URRRadioGroup.h"
 
 @interface URRRadio : NSObject
-@property(nonatomic,strong) UIButton *control;
-@property(nonatomic,strong) NSString *defaultText;
-@property(nonatomic,strong) NSString *selectedText;
-@property(nonatomic,strong) UIImage *defaultImage;
-@property(nonatomic,strong) UIImage *selectedImage;
+
+@property (nonatomic,strong) UIButton *control;
+@property (nonatomic,strong) NSString *defaultText;
+@property (nonatomic,strong) NSString *selectedText;
+@property (nonatomic,strong) UIImage *defaultImage;
+@property (nonatomic,strong) UIImage *selectedImage;
+
 @end
 
 @implementation URRRadio
+
 @end
 
 
@@ -28,6 +31,8 @@
 @end
 
 @implementation URRRadioGroup
+
+@synthesize selectedID = _selectedID;
 
 - (id)init
 {
@@ -101,6 +106,7 @@
                 [radio.control setImage:radio.selectedImage forState:UIControlStateNormal];
                 [radio.control setImage:radio.selectedImage forState:UIControlStateHighlighted];
                 [radio.control setImage:radio.selectedImage forState:UIControlStateSelected];
+                _selectedID = idx;
             }else{
                 [radio.control setTitle:radio.selectedText forState:UIControlStateNormal];
             }
@@ -114,6 +120,7 @@
             }
         }
     }];
+  [self.delegate didSelectButtonIndex:_selectedID];
 }
 
 
